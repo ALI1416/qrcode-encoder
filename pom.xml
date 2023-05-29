@@ -1,0 +1,46 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <artifactId>qrcode-encoder</artifactId>
+  <version>1.0.0</version>
+
+  <parent>
+    <groupId>cn.404z</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.2.0</version>
+  </parent>
+
+  <name>clock</name>
+  <description>QRCode Encoder 二维码生成器</description>
+  <url>https://github.com/ALI1416/qrcode-encoder</url>
+
+  <scm>
+    <url>git@github.com:ALI1416/qrcode-encoder.git</url>
+    <connection>scm:git@github.com:ALI1416/qrcode-encoder.git</connection>
+  </scm>
+
+  <dependencies>
+    <!-- 仅供测试使用 -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.9.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.4.7</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.28</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>
