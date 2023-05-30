@@ -80,46 +80,46 @@ public class Version {
      *                      [1,40]
      */
     public Version(int length, int level, int mode, Integer versionNumber) {
-        int VersionNumber1;
+        int versionNumberValue;
         // 最小版本号
         switch (mode) {
             // NUMERIC 数字0-9
             case 0: {
-                VersionNumber1 = ModeNumeric(length, level) + 1;
+                versionNumberValue = ModeNumeric(length, level) + 1;
                 break;
             }
             // ALPHANUMERIC 数字0-9、大写字母A-Z、符号(空格)$%*+-./:
             case 1: {
-                VersionNumber1 = ModeAlphaNumeric(length, level) + 1;
+                versionNumberValue = ModeAlphaNumeric(length, level) + 1;
                 break;
             }
             // BYTE(ISO-8859-1)
             case 2: {
-                VersionNumber1 = ModeByte(length, level) + 1;
+                versionNumberValue = ModeByte(length, level) + 1;
                 break;
             }
             // BYTE(UTF-8)
             default: {
                 // 相比ISO-8859-1多1字节(不需要补齐符的情况下)
                 // ECI模式指示符(4bit)+ECI指定符(8bit)-结束符(4bit)=1字节
-                VersionNumber1 = ModeByte(length + 1, level) + 1;
+                versionNumberValue = ModeByte(length + 1, level) + 1;
                 break;
             }
         }
-        if (VersionNumber1 == 0) {
+        if (versionNumberValue == 0) {
             throw new RuntimeException("内容过长！最大版本号 40 也无法容下！请使用较低 纠错等级 或 减少内容！");
         }
         // 指定版本号
         if (versionNumber != null) {
             if (versionNumber < 1 || versionNumber > 40) {
                 throw new RuntimeException("版本号 " + versionNumber + " 不合法！应为 [1,40]");
-            } else if (VersionNumber1 > versionNumber) {
-                throw new RuntimeException("版本号 " + versionNumber + " 太小！最小为 " + VersionNumber1);
+            } else if (versionNumberValue > versionNumber) {
+                throw new RuntimeException("版本号 " + versionNumber + " 太小！最小为 " + versionNumberValue);
             } else {
-                VersionNumber1 = versionNumber;
+                versionNumberValue = versionNumber;
             }
         }
-        VersionNumber = VersionNumber1;
+        VersionNumber = versionNumberValue;
         // `内容字节数`bit数
         switch (mode) {
             // NUMERIC

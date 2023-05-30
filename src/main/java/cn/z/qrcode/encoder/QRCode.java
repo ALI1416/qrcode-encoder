@@ -111,20 +111,21 @@ public class QRCode {
      *                      [1,40]
      */
     public QRCode(String content, Integer level, Integer mode, Integer versionNumber) {
+        int levelValue;
+        int modeValue;
         /* 数据 */
-        if (content == null) {
-            content = "";
-        }
         // 纠错等级
         if (level == null) {
-            level = 0;
+            levelValue = 0;
         } else if (level < 0 || level > 3) {
             throw new RuntimeException("纠错等级 " + level + " 不合法！应为 [0,3]");
+        } else {
+            levelValue = level;
         }
-        Level = level;
+        Level = levelValue;
         // 编码模式
         if (mode == null) {
-            mode = DetectionMode(content);
+            modeValue = DetectionMode(content);
         } else if (mode < 0 || mode > 3) {
             throw new RuntimeException("编码模式 " + mode + " 不合法！应为 [0,3]");
         } else {
@@ -132,17 +133,22 @@ public class QRCode {
             if (mode < detectionMode) {
                 throw new RuntimeException("编码模式 " + mode + " 太小！最小为 " + detectionMode);
             }
+            modeValue = mode;
         }
-        Mode = mode;
+        Mode = modeValue;
         // 内容bytes
-        byte[] contentBytes = content.getBytes(StandardCharsets.UTF_8);
+        byte[] bytesRaw = content.getBytes(StandardCharsets.UTF_8);
+        int[] contentBytes = new int[bytesRaw.length];
+        for (int i = 0; i < contentBytes.length; i++) {
+            contentBytes[i] = (bytesRaw[i] & 0xFF);
+        }
         // 版本
-        Version = new Version(contentBytes.length, level, mode, versionNumber);
+        Version = new Version(contentBytes.length, Level, Mode, versionNumber);
         VersionNumber = Version.VersionNumber;
         // 数据bits
         boolean[] dataBits = new boolean[Version.DataBits];
         // 填充数据
-        switch (mode) {
+        switch (Mode) {
             // 填充编码模式为NUMERIC的数据
             case 0: {
                 ModeNumbers(dataBits, contentBytes, Version);
@@ -212,7 +218,7 @@ public class QRCode {
         }
 
         /* 构造掩模模板 */
-        MaskPattern = new MaskPattern(dataAndEcBits, Version, level);
+        MaskPattern = new MaskPattern(dataAndEcBits, Version, Level);
         MaskPatternNumber = MaskPattern.Best;
         Matrix = QRCodeUtils.Convert(MaskPattern.Patterns[MaskPatternNumber], Version.Dimension);
     }
@@ -224,7 +230,7 @@ public class QRCode {
      * @param contentBytes 内容bytes
      * @param version      版本
      */
-    private static void ModeNumbers(boolean[] dataBits, byte[] contentBytes, Version version) {
+    private static void ModeNumbers(boolean[] dataBits, int[] contentBytes, Version version) {
         // 数据指针
         int ptr = 0;
         // 模式指示符(4bit) NUMERIC 0b0001=1
@@ -268,7 +274,7 @@ public class QRCode {
      * @param contentBytes 内容bytes
      * @param version      版本
      */
-    private static void ModeAlphaNumeric(boolean[] dataBits, byte[] contentBytes, Version version) {
+    private static void ModeAlphaNumeric(boolean[] dataBits, int[] contentBytes, Version version) {
         // 数据指针
         int ptr = 0;
         // 模式指示符(4bit) ALPHANUMERIC 0b0010=2
@@ -302,7 +308,7 @@ public class QRCode {
      * @param contentBytes 内容bytes
      * @param version      版本
      */
-    private static void ModeByteIso88591(boolean[] dataBits, byte[] contentBytes, Version version) {
+    private static void ModeByteIso88591(boolean[] dataBits, int[] contentBytes, Version version) {
         // 数据指针
         int ptr = 0;
         // 模式指示符(4bit) BYTE 0b0100=4
@@ -316,7 +322,7 @@ public class QRCode {
         QRCodeUtils.AddBits(dataBits, ptr, contentLength, contentBytesBits);
         ptr += contentBytesBits;
         // 内容
-        for (byte contentByte : contentBytes) {
+        for (int contentByte : contentBytes) {
             QRCodeUtils.AddBits(dataBits, ptr, contentByte, 8);
             ptr += 8;
         }
@@ -331,7 +337,7 @@ public class QRCode {
      * @param contentBytes 内容bytes
      * @param version      版本
      */
-    private static void ModeByteUtf8(boolean[] dataBits, byte[] contentBytes, Version version) {
+    private static void ModeByteUtf8(boolean[] dataBits, int[] contentBytes, Version version) {
         // 数据指针
         int ptr = 0;
         // ECI模式指示符(4bit) 0b0111=7
@@ -353,7 +359,7 @@ public class QRCode {
         QRCodeUtils.AddBits(dataBits, ptr, contentLength, contentBytesBits);
         ptr += contentBytesBits;
         // 内容
-        for (byte contentByte : contentBytes) {
+        for (int contentByte : contentBytes) {
             QRCodeUtils.AddBits(dataBits, ptr, contentByte, 8);
             ptr += 8;
         }

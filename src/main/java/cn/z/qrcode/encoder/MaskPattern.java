@@ -65,6 +65,7 @@ public class MaskPattern {
     static {
         // 初始化格式信息
         for (int i = 0; i < 4; i++) {
+            FormatInfo[i] = new boolean[8][];
             for (int j = 0; j < 8; j++) {
                 FormatInfo[i][j] = QRCodeUtils.GetBits(FORMAT_INFO[i][j], 15);
             }
@@ -87,7 +88,7 @@ public class MaskPattern {
      *                3 H 30%
      */
     public MaskPattern(boolean[] data, Version version, int level) {
-        int Best1;
+        int bestValue = -1;
         int dimension = version.Dimension;
         int versionNumber = version.VersionNumber;
         for (int i = 0; i < 8; i++) {
@@ -109,14 +110,13 @@ public class MaskPattern {
         }
         // 找到最好的模板
         int minPenalty = Integer.MAX_VALUE;
-        Best1 = -1;
         for (int i = 0; i < 8; i++) {
             if (Penalties[i] < minPenalty) {
                 minPenalty = Penalties[i];
-                Best1 = i;
+                bestValue = i;
             }
         }
-        Best = Best1;
+        Best = bestValue;
     }
 
     /**
