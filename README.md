@@ -24,7 +24,7 @@
 <dependency>
     <groupId>cn.404z</groupId>
     <artifactId>qrcode-encoder</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
 </dependency>
 ```
 
