@@ -52,6 +52,9 @@ public class GenericGF {
         }
     }
 
+    private GenericGF() {
+    }
+
     /**
      * 加法
      */

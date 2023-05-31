@@ -34,6 +34,9 @@ public class ReedSolomon {
         }
     }
 
+    private ReedSolomon() {
+    }
+
     /**
      * 编码
      *

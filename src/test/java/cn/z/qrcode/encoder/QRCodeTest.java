@@ -27,10 +27,10 @@ class QRCodeTest {
      */
     @Test
     void test() throws IOException {
-        String content = "123Ab";
-        int level = 1;
+        String content = "1234😀";
+        int level = 0;
         int mode = 3;
-        int versionNumber = 2;
+        int versionNumber = 1;
         String path = "E:/1.png";
         QRCode qrCode = new QRCode(content, level, mode, versionNumber);
         BufferedImage image = ImageUtils.qrMatrix2Image(qrCode.Matrix, 10);

@@ -12,6 +12,9 @@ package cn.z.qrcode.encoder;
  **/
 public class QRCodeUtils {
 
+    private QRCodeUtils() {
+    }
+
     /**
      * byte[][]转为boolean[][]
      * <p>0 -> false</p>

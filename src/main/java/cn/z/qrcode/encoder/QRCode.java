@@ -118,7 +118,7 @@ public class QRCode {
         if (level == null) {
             levelValue = 0;
         } else if (level < 0 || level > 3) {
-            throw new RuntimeException("纠错等级 " + level + " 不合法！应为 [0,3]");
+            throw new QRCodeException("纠错等级 " + level + " 不合法！应为 [0,3]");
         } else {
             levelValue = level;
         }
@@ -127,11 +127,11 @@ public class QRCode {
         if (mode == null) {
             modeValue = DetectionMode(content);
         } else if (mode < 0 || mode > 3) {
-            throw new RuntimeException("编码模式 " + mode + " 不合法！应为 [0,3]");
+            throw new QRCodeException("编码模式 " + mode + " 不合法！应为 [0,3]");
         } else {
             int detectionMode = DetectionMode(content);
             if (mode < detectionMode) {
-                throw new RuntimeException("编码模式 " + mode + " 太小！最小为 " + detectionMode);
+                throw new QRCodeException("编码模式 " + mode + " 太小！最小为 " + detectionMode);
             }
             modeValue = mode;
         }

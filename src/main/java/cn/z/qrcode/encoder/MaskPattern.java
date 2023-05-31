@@ -29,7 +29,7 @@ public class MaskPattern {
     /**
      * 格式信息
      */
-    private static final boolean[][][] FormatInfo = new boolean[4][][];
+    private static final boolean[][][] FormatInfo = new boolean[4][8][];
     /**
      * 版本信息(版本7+)
      */
@@ -65,7 +65,6 @@ public class MaskPattern {
     static {
         // 初始化格式信息
         for (int i = 0; i < 4; i++) {
-            FormatInfo[i] = new boolean[8][];
             for (int j = 0; j < 8; j++) {
                 FormatInfo[i][j] = QRCodeUtils.GetBits(FORMAT_INFO[i][j], 15);
             }
@@ -305,7 +304,8 @@ public class MaskPattern {
             byte isBlack = (byte) (formatInfo[14 - i] ? 1 : 0);
             // 左上角
             pattern[FORMAT_INFO_COORDINATES[i][0]][FORMAT_INFO_COORDINATES[i][1]] = isBlack;
-            int x, y;
+            int x;
+            int y;
             // 右上角
             if (i < 8) {
                 x = dimension - i - 1;
@@ -669,6 +669,7 @@ public class MaskPattern {
      * <p>数据来源 ISO/IEC 18004-2015 -> Annex E -> Table E.1</p>
      */
     private static final int[][] POSITION_ALIGNMENT_PATTERN_COORDINATE = { //
+            {6, 18}, //
             {6, 22}, //
             {6, 26}, //
             {6, 30}, //
