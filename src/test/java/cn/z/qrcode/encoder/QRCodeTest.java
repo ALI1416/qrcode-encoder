@@ -31,7 +31,7 @@ class QRCodeTest {
         int level = 0;
         int mode = 3;
         int versionNumber = 1;
-        String path = "E:/1.png";
+        String path = "/1.png";
         QRCode qrCode = new QRCode(content, level, mode, versionNumber);
         BufferedImage image = ImageUtils.qrMatrix2Image(qrCode.Matrix, 10);
         ImageUtils.saveImage(image, path);
