@@ -1,4 +1,4 @@
-# qrcode-encoder 二维码生成器Java版
+# QR Code Encoder For Java 二维码生成器Java版
 
 [![License](https://img.shields.io/github/license/ali1416/qrcode-encoder?label=License)](https://opensource.org/licenses/BSD-3-Clause)
 [![Java Support](https://img.shields.io/badge/Java-8+-green)](https://openjdk.org/)
@@ -17,6 +17,11 @@
 本项目迁移自[ALI1416/QRCodeEncoder.Net](https://github.com/ali1416/QRCodeEncoder.Net)，只编写了生成器部分，并对处理逻辑进行了大量优化，构建后`qrcode-encoder.jar`文件仅`20kb`
 
 注意：本项目不提供二维码绘制方法，如需绘制请看`使用示例`
+
+### 其他语言项目
+
+- `.Net` : [ALI1416/QRCodeEncoder.Net](https://github.com/ali1416/QRCodeEncoder.Net)
+- `JavaScript` : [ALI1416/qrcode-encoder-js](https://github.com/ali1416/qrcode-encoder-js)
 
 ## 依赖导入
 
@@ -124,22 +129,15 @@ public static void saveImage(BufferedImage image, String path) throws IOExceptio
 
 [点击查看](./CHANGELOG.md)
 
-## 其他语言项目
-
-- `.Net` : [ALI1416/QRCodeEncoder.Net](https://github.com/ali1416/QRCodeEncoder.Net)
-- `JavaScript` : [ALI1416/qrcode-encoder-js](https://github.com/ali1416/qrcode-encoder-js)
-
 ## 参考
 
 - [ALI1416/QRCodeEncoder.Net](https://github.com/ali1416/QRCodeEncoder.Net)
 
-## 交流与赞助
+## 关于
 
-- [x] `QQ` : `1416978277`
-- [x] `微信` : `1416978277`
-- [x] `支付宝` : `1416978277@qq.com`
-- [x] `电子邮箱` : `1416978277@qq.com`
-
-![交流](https://cdn.jsdelivr.net/gh/ALI1416/ALI1416/image/contact.png)
-
-![赞助](https://cdn.jsdelivr.net/gh/ALI1416/ALI1416/image/donate.png)
+<object data="https://404z.cn/images/about.svg" style="max-width:100%;">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://404z.cn/images/about.dark.svg">
+    <img alt="About" src="https://404z.cn/images/about.light.svg">
+  </picture>
+</object>
