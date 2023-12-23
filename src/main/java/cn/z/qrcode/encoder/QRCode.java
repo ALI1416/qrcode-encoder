@@ -44,7 +44,6 @@ public class QRCode {
      */
     public final boolean[][] Matrix;
 
-
     /**
      * 构造二维码
      * <p>纠错等级 0 L 7%</p>
