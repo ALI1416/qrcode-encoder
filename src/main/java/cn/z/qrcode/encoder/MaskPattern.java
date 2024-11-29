@@ -439,9 +439,9 @@ public class MaskPattern {
      * @return 惩戒分
      */
     private static int MaskPenaltyRule(byte[][] pattern, int dimension) {
-        return MaskPenaltyRule1(pattern, dimension) //
-                + MaskPenaltyRule2(pattern, dimension) //
-                + MaskPenaltyRule3(pattern, dimension) //
+        return MaskPenaltyRule1(pattern, dimension)
+                + MaskPenaltyRule2(pattern, dimension)
+                + MaskPenaltyRule3(pattern, dimension)
                 + MaskPenaltyRule4(pattern, dimension);
     }
 

@@ -28,7 +28,7 @@ public class GenericGFPoly {
     public final boolean IsZero;
 
     /**
-     * 构造函数
+     * 构造多项式
      *
      * @param coefficients 多项式常数
      */
@@ -69,6 +69,9 @@ public class GenericGFPoly {
 
     /**
      * 加法
+     *
+     * @param other 被加数
+     * @return 结果
      */
     public GenericGFPoly Addition(GenericGFPoly other) {
         if (IsZero) {
@@ -95,6 +98,9 @@ public class GenericGFPoly {
 
     /**
      * 乘法
+     *
+     * @param other 被乘数
+     * @return 结果
      */
     public GenericGFPoly Multiply(GenericGFPoly other) {
         if (IsZero || other.IsZero) {
@@ -119,6 +125,7 @@ public class GenericGFPoly {
      *
      * @param degree      次数
      * @param coefficient 系数
+     * @return 结果
      */
     public GenericGFPoly MultiplyByMonomial(int degree, int coefficient) {
         if (coefficient == 0) {
@@ -134,6 +141,9 @@ public class GenericGFPoly {
 
     /**
      * 除法的余数
+     *
+     * @param other 被除数
+     * @return 余数
      */
     public GenericGFPoly RemainderOfDivide(GenericGFPoly other) {
         GenericGFPoly remainder = this;
