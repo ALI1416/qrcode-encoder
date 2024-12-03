@@ -57,6 +57,10 @@ public class GenericGF {
 
     /**
      * 加法
+     *
+     * @param a 加数
+     * @param b 被加数
+     * @return 结果
      */
     public static int Addition(int a, int b) {
         return a ^ b;
@@ -64,6 +68,9 @@ public class GenericGF {
 
     /**
      * 2的次方
+     *
+     * @param a 幂
+     * @return 结果
      */
     public static int Exp(int a) {
         return ExpTable[a];
@@ -71,6 +78,9 @@ public class GenericGF {
 
     /**
      * 逆运算
+     *
+     * @param a 被操作数
+     * @return 结果
      */
     public static int Inverse(int a) {
         return ExpTable[DIMENSION - LogTable[a] - 1];
@@ -78,6 +88,10 @@ public class GenericGF {
 
     /**
      * 乘法
+     *
+     * @param a 乘数
+     * @param b 被乘数
+     * @return 结果
      */
     public static int Multiply(int a, int b) {
         if (a == 0 || b == 0) {
