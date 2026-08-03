@@ -27,9 +27,9 @@
 
 ```xml
 <dependency>
-    <groupId>cn.404z</groupId>
-    <artifactId>qrcode-encoder</artifactId>
-    <version>1.4.0</version>
+  <groupId>cn.404z</groupId>
+  <artifactId>qrcode-encoder</artifactId>
+  <version>1.5.0</version>
 </dependency>
 ```
 
